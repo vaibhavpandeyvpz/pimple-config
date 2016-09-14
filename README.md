@@ -1,5 +1,7 @@
 # vaibhavpandeyvpz/pimple-config
-A service provider for [pimple/pimple](https://github.com/silexphp/Pimple), for loading configuration from simple PHP files.
+A service provider for [Pimple](https://github.com/silexphp/Pimple), to load configuration from simple [PHP](http://www.php.net/) files.
+
+[![Latest Version](https://img.shields.io/github/release/vaibhavpandeyvpz/pimple-config.svg?style=flat-square)](https://github.com/vaibhavpandeyvpz/pimple-config/releases) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/vaibhavpandeyvpz/pimple-config/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/vaibhavpandeyvpz/pimple-config/?branch=master) [![Total Downloads](https://img.shields.io/packagist/dt/vaibhavpandeyvpz/pimple-config.svg?style=flat-square)](https://packagist.org/packages/vaibhavpandeyvpz/pimple-config) [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 
 Install
 -------

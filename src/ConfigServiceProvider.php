@@ -11,8 +11,8 @@
 
 namespace Pimple\Provider;
 
-use \InvalidArgumentException;
-use \RuntimeException;
+use InvalidArgumentException;
+use RuntimeException;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 

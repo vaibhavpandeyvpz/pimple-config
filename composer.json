@@ -1,8 +1,10 @@
 {
   "autoload": {
-    "psr-4": {"Pimple\\Provider\\": "src/"}
+    "psr-4": {
+      "Pimple\\Provider\\": "src/"
+    }
   },
-  "description": "A service provider for Pimple, for loading configuration from simple PHP files.",
+  "description": "A service provider for Pimple to load configuration from simple PHP files.",
   "homepage": "http://vaibhavpandeyvpz.github.io/pimple-config",
   "keywords": ["pimple", "config", "service", "provider"],
   "license": "MIT",
