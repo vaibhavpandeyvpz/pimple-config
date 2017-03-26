@@ -35,7 +35,7 @@ class ConfigServiceProvider implements ServiceProviderInterface
                 if (is_file($file) && is_readable($file)) {
                     /** @noinspection PhpIncludeInspection */
                     $values = require $file;
-                    if (is_array($contents)) {
+                    if (is_array($values)) {
                         foreach ($values as $key => $value) {
                             $pimple[$key] = $value;
                         }
