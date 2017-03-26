@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.md.
  */
 
-namespace Pimple\Provider;
+namespace Pimple\Config;
 
 use InvalidArgumentException;
 use RuntimeException;
@@ -18,48 +18,34 @@ use Pimple\ServiceProviderInterface;
 
 /**
  * Class ConfigServiceProvider
- * @package Pimple\Provider
+ * @package Pimple\Config
  */
 class ConfigServiceProvider implements ServiceProviderInterface
 {
-    /**
-     * @var string
-     */
-    protected $file;
-
-    /**
-     * @var bool
-     */
-    protected $optional;
-
-    /**
-     * ConfigServiceProvider constructor.
-     * @param string $file
-     * @param bool $optional
-     */
-    public function __construct($file, $optional = false)
-    {
-        $this->file = $file;
-        $this->optional = $optional;
-    }
-
     /**
      * @inheritdoc
      */
     public function register(Container $pimple)
     {
-        if (is_file($this->file) && is_readable($this->file)) {
-            /** @noinspection PhpIncludeInspection */
-            $contents = require $this->file;
-            if (is_array($contents)) {
-                foreach ($contents as $k => $v) {
-                    $pimple[$k] = $v;
+        $pimple['config.files'] = function ($pimple) {
+            return [$pimple['config.file']];
+        };
+        $pimple['config.hydrate'] = $pimple->protect(function ($pimple) {
+            foreach ($pimple['config.files'] as $file) {
+                if (is_file($file) && is_readable($file)) {
+                    /** @noinspection PhpIncludeInspection */
+                    $values = require $file;
+                    if (is_array($contents)) {
+                        foreach ($values as $key => $value) {
+                            $pimple[$key] = $value;
+                        }
+                    } else {
+                        throw new InvalidArgumentException("Configuration file must return an array");
+                    }
+                } else {
+                    throw new RuntimeException("Could not find or read from {$file}");
                 }
-            } else {
-                throw new InvalidArgumentException("Configuration file must return an array");
             }
-        } elseif ($this->optional !== true) {
-            throw new RuntimeException("Could not find or read from {$this->file}");
-        }
+        });
     }
 }
