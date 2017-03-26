@@ -19,13 +19,14 @@ $container = new Pimple\Container();
 /**
  * @desc You can add as many as config service providers.
  */
-$container->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/config.php'));
+$container->register(new Pimple\Config\ConfigServiceProvider(), [
+    'config.files' => [
+        __DIR__ . '/database.php',
+        __DIR__ . '/security.php',
+    ]
+]);
 
-/**
- * @desc You can also load optional configuration files.
- *  If the file is missing ..., it won't complain.
- */
-$container->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/config.dev.php', true));
+$container['config.hydrate']($container);
 ```
 
 License
